@@ -45,6 +45,15 @@
     mode:  0755
     setype: mysqld_db_t
 
+- name: Create piddir
+  file:
+    path: "{{ mysql_pid_file | dirname }}"
+    state: directory
+    owner: mysql
+    group: mysql
+    mode: 0755
+    setype: mysqld_db_t
+
 - name: Set ownership on slow query log file (if configured).
   file:
     path: "{{ mysql_slow_query_log_file }}"
